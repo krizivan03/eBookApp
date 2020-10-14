@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SignInForm from './Components/SignInForm';
+import Navbar from './Components/Navbar'
+import BookItem from './Components/BookItem'
 
 function App() {
+  let numBooks = 
+  [
+    {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 1},
+    {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 2},
+    {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 3},
+    {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 3},
+    {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 3},
+    {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 3},
+    {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 3}
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Navbar title = "GoodBook"></Navbar>
+     <div class="container">
+     <div class="jumbotron">
+     { numBooks.map(book => (<BookItem bookTitle = {book.name} bookAuthor ={book.author} bookDesc = {book.description} bookPrice ={book.price} ></BookItem>))} 
+     </div>
+     </div>
+    
+    {/* <SignInForm></SignInForm> */}
+    
     </div>
   );
 }
