@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.theBooks{
+  overflow: auto;
+  height: 800px;
+}
+.favoriteBooks{
+  overflow: auto;
+  height: 400px;
+
+}
+.app{
+  height: 100%;
+}
