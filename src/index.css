@@ -1,10 +1,15 @@
-body {
+#root{
+  height: 100%;
+}
+
+html,body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
@@ -13,13 +18,47 @@ code {
 }
 .theBooks{
   overflow: auto;
-  height: 800px;
+  height: 700px;
 }
 .favoriteBooks{
   overflow: auto;
-  height: 400px;
+  height: 350px;
 
 }
 .app{
   height: 100%;
+}
+.errorMsg{
+  border: none;
+  background: none;
+  color: red;
+}
+.favoriteBooksMsg{
+  color: grey;
+  text-align: center;
+}
+.createButton{
+  border: none;
+  background: none;
+  color: red;
+  text-decoration: underline;
+}
+.contributersBtn{
+  border: none;
+  background: none;
+  color: grey;
+  text-decoration: underline;
+}
+
+.add_or_removeBtn{
+  border: none;
+  background: none;
+  color: grey;
+}
+.bigShouldersFont{
+  font-family: 'Big Shoulders Inline Text', cursive;
+}
+.sacramentoFont{
+  font-family: 'Jacques Francois Shadow', cursive;
+  font-size: x-large;
 }

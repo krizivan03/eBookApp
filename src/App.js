@@ -4,21 +4,46 @@ import Navbar from './Components/Navbar'
 import BookItem from './Components/BookItem'
 import TheBooks from './Components/TheBooks'
 import FavoriteBooks from './Components/FavoriteBooks'
+import AFooter from './Components/Footer';
 
-function App() {
+
+// Select title,image_url,"name" From WrittenBy Natural JOIN Book Natural JOIN Author
+class App extends React.Component{
+
+  state = {
+    appState:1, // 1 for log in , 2 for app, 3 for contributors
+    user: "",
+    pw: ""
+  }
   
+  logIn = () =>{
+    this.setState({
+      appState: 2
+    });
+  }
 
-  return (
-    <div class="App">
-     <Navbar title = "GoodBook"></Navbar>
-     <div class = "row mx-3 justify-content-center">
-     <TheBooks></TheBooks>
-     <FavoriteBooks></FavoriteBooks>
-     </div>
-     
-    {/* <SignInForm></SignInForm> */}
-    </div>
-  );
+  render(){
+    switch (this.state.appState) {
+      case 1:
+        return(
+          <div class="App m-5">
+            <SignInForm setLogIn = {this.logIn}></SignInForm>
+          </div>
+        );
+      case 2:
+        return (
+          <div class="App">
+            <Navbar title = "GoodBook"></Navbar>
+            <div class = "row mx-3 justify-content-center">
+            <TheBooks></TheBooks>
+            <FavoriteBooks></FavoriteBooks>
+            </div>
+            <AFooter></AFooter>
+          </div>
+        );
+    }
+  }
+  
 }
 
 export default App;
