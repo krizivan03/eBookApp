@@ -5,19 +5,19 @@ class TheBooks extends React.Component{
   
     state = {
       books:[
-        {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 1}
+        // {name:"Harry Potter", author: "J.K Rowling", description: "This is a desc", price: 1}
       ]
     }
-    // componentDidMount(){
-    //   this.getData();
-    // }
-    // getData = () =>{
-    //   fetch('https://api.github.com/users/hacktivist123/repos')
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ books: data}))
-    //   .then(data => console.log(data))
-    //   .catch(err => console.error(err));
-    // }
+    componentDidMount(){
+      this.getData();
+    }
+    getData = () =>{
+      fetch('https://hnm1qlqi1m.execute-api.us-east-1.amazonaws.com/dev/getBooks')
+      .then(response => response.json())
+      .then(data => this.setState({ books: data}))
+      .then(data => console.log(data))
+      .catch(err => console.error(err));
+    }
     
     render(){
       let msg;
@@ -34,7 +34,7 @@ class TheBooks extends React.Component{
             <h1 className = "bigShouldersFont">Book Library</h1>
             <div class="jumbotron theBooks">
               {msg}
-              { this.state.books.map(book => (<BookItem bookTitle = {book.name} bookAuthor ={book.author} bookDesc = {book.description} add_or_remove ="Add" ></BookItem>))} 
+              { this.state.books.map(book => (<BookItem bookTitle = {book.title} bookAuthor ={book.name} /*bookDesc = {book.description}*/ imgURL = {book.image_url} add_or_remove ="Add" ></BookItem>))} 
             </div>
         </div>
     );

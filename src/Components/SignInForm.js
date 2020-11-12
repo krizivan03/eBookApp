@@ -12,8 +12,6 @@ class SignInForm extends React.Component{
             if (validState == 1) {
                 msg = <small class="errorMsg">This is not a vaid user, would you like to<button type="Create" class="createButton" onClick = {this.props.setLogIn}>Create</button>?</small>
             }
-        
-
         return(
             <div class="jumbotron container m-auto">
                 <h1 class="display-4">Log In</h1>
