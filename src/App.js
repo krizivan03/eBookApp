@@ -11,9 +11,11 @@ import AFooter from './Components/Footer';
 class App extends React.Component{
 
   state = {
-    appState:1, // 1 for log in , 2 for app, 3 for contributors
+    appState:2, // 1 for log in , 2 for app, 3 for contributors
     user: "",
-    pw: ""
+    pw: "",
+    theBookList:[],
+    favBooks:[]
   }
   
   logIn = () =>{
@@ -33,7 +35,7 @@ class App extends React.Component{
       case 2:
         return (
           <div class="App">
-            <Navbar title = "GoodBook"></Navbar>
+            <Navbar title = "GoodBook" getSearch = {this.getSearch} ></Navbar>
             <div class = "row mx-3 justify-content-center">
             <TheBooks></TheBooks>
             <FavoriteBooks></FavoriteBooks>

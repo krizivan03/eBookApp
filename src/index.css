@@ -33,6 +33,9 @@ code {
   background: none;
   color: red;
 }
+.bookGylphColor{
+  color: black !important;
+}
 .favoriteBooksMsg{
   color: grey;
   text-align: center;
