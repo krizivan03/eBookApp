@@ -5,7 +5,7 @@ class BookItem extends React.Component{
         return(
             <div className="container-fluid rounded list-group-item list-group-item-action my-2">    
                 <div className="d-flex w-100 justify-content-between align-items-start">
-                    <img src={this.props.imgURL} className="bookIMG"></img>
+                <a className="font-weight-bolder bigShouldersFont" href ={'https://google.com/search?q='+this.props.bookTitle}><img src={this.props.imgURL} className="bookIMG"></img></a>
                     <div className="container-fluid">
                         <h1 className="font-weight-bolder bigShouldersFont">{this.props.bookTitle}</h1>
                         <hr></hr>

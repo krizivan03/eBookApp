@@ -55,6 +55,7 @@ class App extends React.Component{
         return(
           <div className="App m-5">
             <SignInForm createUser = {this.create} changeAppState = {this.changeAppState} setUserIDInput = {this.setUserIDInput}></SignInForm>
+            <AFooter></AFooter>
           </div>
         );
       case 2:

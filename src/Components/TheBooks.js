@@ -4,9 +4,7 @@ import BookItem from './BookItem'
 class TheBooks extends React.Component{
   
     state = {
-      books:[{name:"Harper Lee",image_url:"https://images.gr-assets.com/books/1361975680m/2657.jpg",title:"To Kill a Mockingbird"},
-      {name:"Harper Lee",image_url:"https://images.gr-assets.com/books/1361975680m/2657.jpg",title:"To Kill a Mockingbird"},
-      {name:"Harper Lee",image_url:"https://images.gr-assets.com/books/1361975680m/2657.jpg",title:"To Kill a Mockingbird"}],
+      books:[],
       searchVal:'',
       msg:'',
       favsID:''

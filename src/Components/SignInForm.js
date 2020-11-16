@@ -65,8 +65,13 @@ class SignInForm extends React.Component{
                     <div className = "d-flex justify-content-end">
                     <button type="button" className="btn btn-dark mt-2" onClick = {this.logIn} >Log In</button>
                     </div>
+                    <div className = "d-flex justify-content-end pt-5 mb-0">
+                    <small className="errorMsg"><button type="button" className="add_or_removeBtn" onClick = {this.props.createUser}>Create ?</button></small>
+                    </div>
                     {msg}
+                    
                 </form>
+                
             </div>
             
         );
