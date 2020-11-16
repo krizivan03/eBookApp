@@ -11,34 +11,59 @@ import AFooter from './Components/Footer';
 class App extends React.Component{
 
   state = {
-    appState:2, // 1 for log in , 2 for app, 3 for contributors
-    user: "",
-    pw: "",
-    theBookList:[],
-    favBooks:[]
+    appState:1, // 1 for log in , 2 for app, 3 for contributors
+    UserIDInput:'',
+    userID:[],
+  }
+  changeAppState = () =>{
+    this.setState({
+      appState:2,
+      didCreate:0 // 0 not created, 1 yes
+    })
+  }
+  setUserIDInput = (e) =>{
+    this.setState({
+      UserIDInput: e.target.value
+    })
+  }
+  refresh = () =>{
+    this.refs.favBooks.componentDidMount()
+  }
+  create = () =>{
+    fetch('https://hnm1qlqi1m.execute-api.us-east-1.amazonaws.com/dev/addUser')
+          .then(console.log("SUCCESS in create: creating user"))
+          .then(()=>{
+            fetch('https://hnm1qlqi1m.execute-api.us-east-1.amazonaws.com/dev/getLastID')
+            .then(response => response.json())
+            .then(data => {
+              this.setState({
+                UserIDInput: data[0].max,
+                didCreate:1
+              });
+              this.changeAppState();
+            })
+            .catch(err => console.error(err + "Error in Getting ID"));
+          })
+          .catch(err => console.log(err + "Error in create: error in creating user"));
+          console.log('Done with adding user')
+          
   }
   
-  logIn = () =>{
-    this.setState({
-      appState: 2
-    });
-  }
-
   render(){
     switch (this.state.appState) {
       case 1:
         return(
-          <div class="App m-5">
-            <SignInForm setLogIn = {this.logIn}></SignInForm>
+          <div className="App m-5">
+            <SignInForm createUser = {this.create} changeAppState = {this.changeAppState} setUserIDInput = {this.setUserIDInput}></SignInForm>
           </div>
         );
       case 2:
         return (
-          <div class="App">
+          <div className="App">
             <Navbar title = "GoodBook" getSearch = {this.getSearch} ></Navbar>
-            <div class = "row mx-3 justify-content-center">
-            <TheBooks></TheBooks>
-            <FavoriteBooks></FavoriteBooks>
+            <div className = "row mx-3 justify-content-center">
+            <TheBooks favsID = {this.state.UserIDInput} refreshFavs = {this.refresh}></TheBooks>
+            <FavoriteBooks ref = "favBooks" favsID = {this.state.UserIDInput} didCreate = {this.state.didCreate}></FavoriteBooks>
             </div>
             <AFooter></AFooter>
           </div>
