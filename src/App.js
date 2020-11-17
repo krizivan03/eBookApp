@@ -54,6 +54,7 @@ class App extends React.Component{
       case 1:
         return(
           <div className="App m-5">
+            <Navbar title = "GoodBook"></Navbar>
             <SignInForm createUser = {this.create} changeAppState = {this.changeAppState} setUserIDInput = {this.setUserIDInput}></SignInForm>
             <AFooter></AFooter>
           </div>
@@ -61,7 +62,8 @@ class App extends React.Component{
       case 2:
         return (
           <div className="App">
-            <Navbar title = "GoodBook" getSearch = {this.getSearch} ></Navbar>
+            <Navbar title = "GoodBook"></Navbar>
+            <div className="userID bigShouldersFont text-right pr-5">USER ID: {this.state.UserIDInput} </div>
             <div className = "row mx-3 justify-content-center">
             <TheBooks favsID = {this.state.UserIDInput} refreshFavs = {this.refresh}></TheBooks>
             <FavoriteBooks ref = "favBooks" favsID = {this.state.UserIDInput} didCreate = {this.state.didCreate}></FavoriteBooks>

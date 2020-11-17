@@ -6,7 +6,8 @@ class SignInForm extends React.Component{
     state = {
         isValid:0,
         UserIDInput:'', // 0 not present, 1 not valid. create?
-        userID:[]
+        userID:[],
+        loading:false
     }
     setUserID = (e) =>{
         this.props.setUserIDInput(e)
@@ -17,12 +18,12 @@ class SignInForm extends React.Component{
       
     logIn = () =>{
         const val = this.state.UserIDInput
-        
+        this.setState({ loading: true});
         if (val.length>0){
           fetch('https://hnm1qlqi1m.execute-api.us-east-1.amazonaws.com/dev/findUser/'+val)
           .then(response => response.json())
           .then(data => {
-            this.setState({ userID: data});
+            this.setState({ userID: data, loading:false});
             this.props.changeAppState()
           })
           .then(console.log("SUCCESS in LogIn"))
@@ -37,20 +38,27 @@ class SignInForm extends React.Component{
       emptyVal = () =>{
         console.error("Input was empty or not valid")
           this.setState({
-            isValid: 1
+            isValid: 1,
+            loading:false
           });
       }
       
     
-    
+    toggleLoader = () =>{
+        this.setState({
+            loading:true
+        })
+        this.props.createUser()
+    }
     render(){
         let msg;
         const validState = this.state.isValid;
             if (validState == 1) {
-                msg = <small className="errorMsg ">This is not a vaid user, would you like to<button type="button" className="createButton" onClick = {this.props.createUser}>Create</button>?</small>
+                msg = <small className="errorMsg ">This is not a vaid user, would you like to<button type="button" className="createButton" onClick = {this.toggleLoader}>Create</button>?</small>
             }
+        let spinner = this.state.loading ?<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only"></span></div></div> :<div></div> ;
         return(
-            <div className="jumbotron container m-auto">
+            <div className="jumbotron container mx-auto my-5 w-50 h-50">
                 <h1 className="display-4 text-center">Log In</h1>
                 <form>
                     <div className="form-group">
@@ -65,8 +73,9 @@ class SignInForm extends React.Component{
                     <div className = "d-flex justify-content-end">
                     <button type="button" className="btn btn-dark mt-2" onClick = {this.logIn} >Log In</button>
                     </div>
+                    {spinner}
                     <div className = "d-flex justify-content-end pt-5 mb-0">
-                    <small className="errorMsg"><button type="button" className="add_or_removeBtn" onClick = {this.props.createUser}>Create ?</button></small>
+                    <small className="errorMsg"><button type="button" className="add_or_removeBtn" onClick = {this.toggleLoader}>Create ?</button></small>
                     </div>
                     {msg}
                     

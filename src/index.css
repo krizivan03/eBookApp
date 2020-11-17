@@ -68,9 +68,13 @@ code {
 }
 .bookLogo{
   width: 150px;
+  max-height: 100px;
   border: none;
   background: none;
 }
 .bookIMG{
   max-height: 100px;
+}
+.userID{
+  color: black;
 }

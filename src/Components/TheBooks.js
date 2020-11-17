@@ -7,7 +7,8 @@ class TheBooks extends React.Component{
       books:[],
       searchVal:'',
       msg:'',
-      favsID:''
+      favsID:'',
+      loading:false
     }
     componentDidMount(){
       this.getData();
@@ -15,11 +16,12 @@ class TheBooks extends React.Component{
     getData = () =>{
       const val = this.props.favsID
       this.setState({
-        msg: 'Oops! Seems we couldnt retrieve the books. Try capitlize the first letter'
+        msg: 'Oops! Seems we couldnt retrieve the books. Try capitlize the first letter',
+        loading: true
       });
       fetch('https://hnm1qlqi1m.execute-api.us-east-1.amazonaws.com/dev/getBooks')
       .then(response => response.json())
-      .then(data => this.setState({ books: data,favsID:val}))
+      .then(data => this.setState({ books: data,favsID:val,loading: false}))
       .catch(err => console.error(err+"Error In getData"));
     }
     resetData = () =>{
@@ -35,15 +37,17 @@ class TheBooks extends React.Component{
     }
     getSearch = () =>{
       const val = this.state.searchVal
-      
+      this.setState({ loading:true})
       if (val.length>0) {
         this.setState({
           msg: 'Oops! Seems we couldnt retrieve the books. Try capitlize the first letter. And only one word'
         });
         fetch('https://hnm1qlqi1m.execute-api.us-east-1.amazonaws.com/dev/getaSearch/'+val)
         .then(response => response.json())
-        .then(data => this.setState({ books: data}))
+        .then(data => this.setState({ books: data,loading:false}))
         .catch(err => console.error(err+"Error in getSearch")); 
+      }else{
+          this.setState({ loading:false}) 
       }
     }
     addBook = (book_id)=>{
@@ -56,6 +60,7 @@ class TheBooks extends React.Component{
     
     render(){
       let msg;
+      let spinner = this.state.loading ?<div class="d-flex justify-content-center m-auto"><div class="spinner-border" role="status"><span class="sr-only"></span></div></div> :<div></div> ;
       let theBookarray = this.state.books
             if (theBookarray.length==0) {
               msg = 
@@ -70,6 +75,7 @@ class TheBooks extends React.Component{
             <div className="jumbotron theBooks row">
               <input className="col-10 form-control m-0 mb-5" type="text" onChange = {this.setSearchVal} value ={this.state.searchVal} placeholder="Search" aria-label="Search"></input>
               <button className="col-2 m-0 mb-5 form-control add_or_removeBtn" type="submit" onClick = {this.getSearch}>Search</button>
+              {spinner}
               {msg}
               { this.state.books.map(book => (<BookItem bookTitle = {book.title} bookAuthor ={book.name} /*bookDesc = {book.description}*/ imgURL = {book.image_url} bookID ={book.book_id} addlabel ="Add" add= {this.addBook}></BookItem>))} 
             </div>
