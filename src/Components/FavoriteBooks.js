@@ -64,7 +64,7 @@ import BookItem from './BookItem'
           { this.state.FavBooks.map(book => (<BookItem bookTitle = {book.title} bookAuthor ={book.name} bookID ={book.book_id} imgURL = {book.image_url}  add_or_remove ="-" remove = {this.remove} ></BookItem>))} 
         </div>
         {/* <div className="userID bigShouldersFont"><small>USER ID: {this.state.favsID}</small> </div> */}
-        <div className="d-flex justify-content-end"><button className="add_or_removeBtn bigShouldersFont" onClick = {this.getRecc}>Reccomend?</button></div>
+        <div className="d-flex justify-content-end"><button className="add_or_removeBtn bigShouldersFont" onClick = {this.getRecc}>Recommend?</button></div>
         {spinner}
         {reccomendation}
       </div>

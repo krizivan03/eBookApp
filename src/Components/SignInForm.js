@@ -58,7 +58,7 @@ class SignInForm extends React.Component{
             }
         let spinner = this.state.loading ?<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only"></span></div></div> :<div></div> ;
         return(
-            <div className="jumbotron container mx-auto my-5 w-50 h-50">
+            <div className="jumbotron container mx-auto my-5 h-50">
                 <h1 className="display-4 text-center">Log In</h1>
                 <form>
                     <div className="form-group">
