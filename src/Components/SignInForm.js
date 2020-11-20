@@ -54,7 +54,7 @@ class SignInForm extends React.Component{
         let msg;
         const validState = this.state.isValid;
             if (validState == 1) {
-                msg = <small className="errorMsg ">This is not a vaid user, would you like to<button type="button" className="createButton" onClick = {this.toggleLoader}>Create</button>?</small>
+                msg = <small className="errorMsg ">This is not a valid user, would you like to<button type="button" className="createButton" onClick = {this.toggleLoader}>Create</button>?</small>
             }
         let spinner = this.state.loading ?<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only"></span></div></div> :<div></div> ;
         return(
